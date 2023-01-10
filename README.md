@@ -1,18 +1,34 @@
-## Getting Started
+# Prompt Dungeon
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/devsuperior/sds1-wmazoni/blob/master/LICENSE) 
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+# Sobre o projeto
 
-## Folder Structure
+Prompt Dungeon é um jogo de rpg inspirado em Dungeons & Dragons no qual é jogado apenas pelo prompt de comando, através de escolhas descritas previamente.
 
-The workspace contains two folders by default, where:
+O projeto surgiu após a necessidade aprofundar meus conhecimentos sobre programação orientada a objetos(POO) e a linguagem Java.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Layout
+![Layout 1](https://github.com/Rudersonvf/assets/blob/main/prompt1.png)
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+![Layout 2](https://github.com/Rudersonvf/assets/blob/main/prompt2.png)
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## Modelo conceitual
+![Modelo Conceitual](https://github.com/Rudersonvf/assets/blob/main/modelo-conceitual.png)
 
-## Dependency Management
+# Tecnologias utilizadas
+- Java
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+# Como executar o projeto
+
+Pré-requisitos: JDK 17
+
+Baixar o arquivo no ropositorio do drive, descompactar e executar o arquivo PlayPromptDungeon.bat.
+https://drive.google.com/file/d/1IpPkLN8qo4rgjQ9l916YTpHh9U80tRGv/view?usp=share_link
+
+Criar uma pasta C:\Temp e colocar o arquivo enemies.csv dentro.
+
+# Autor
+
+Ruderson Florentino
+
+https://www.linkedin.com/in/rudersonvf/
