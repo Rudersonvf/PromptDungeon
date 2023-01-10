@@ -36,4 +36,9 @@ public class Skill {
         this.manaConsume = manaConsume;
     }
 
+    @Override
+    public String toString(){
+        return String.format("%s / DM: %.2f%% / MC: %.0f", getName() ,getDamageMultiplier() ,getManaConsume());
+    }
+
 }

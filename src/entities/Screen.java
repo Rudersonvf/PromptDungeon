@@ -2,11 +2,10 @@ package entities;
 
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 public class Screen {
 
-    public void printCorridor() {
+    public static void printCorridor() {
 
         StringBuilder sb = new StringBuilder();
 
@@ -26,7 +25,7 @@ public class Screen {
         System.out.println(sb.toString());
     }
 
-    public void printTreasure() {
+    public static void printTreasure() {
 
         StringBuilder sb = new StringBuilder();
 
@@ -46,7 +45,7 @@ public class Screen {
         System.out.println(sb.toString());
     }
 
-    public void printInventory() {
+    public static void printInventory() {
 
         StringBuilder sb = new StringBuilder();
 
@@ -66,7 +65,7 @@ public class Screen {
         System.out.println(sb.toString());
     }
 
-    public void printNextLevel() {
+    public static void printNextLevel() {
 
         StringBuilder sb = new StringBuilder();
 
@@ -86,7 +85,7 @@ public class Screen {
         System.out.println(sb.toString());
     }
 
-    public void printMonster() {
+    public static void printMonster() {
 
         StringBuilder sb = new StringBuilder();
 
@@ -106,7 +105,7 @@ public class Screen {
         System.out.println(sb.toString());
     }
 
-    public void printInitialScreen() {
+    public static void printInitialScreen() {
 
         StringBuilder sb = new StringBuilder();
 
@@ -126,7 +125,7 @@ public class Screen {
         System.out.println(sb.toString());
     }
 
-    public void printGameOver() {
+    public static void printGameOver() {
 
         StringBuilder sb = new StringBuilder();
 
@@ -141,32 +140,38 @@ public class Screen {
         sb.append("|        /   /          |\n");
         sb.append("|_______/___/___________|\n");
         sb.append("|                       |\n");
-        sb.append("|      GAME OVER!       |\n");
+        sb.append("|       GAME OVER       |\n");
         sb.append("|_______________________|\n");
         System.out.println(sb.toString());
     }
 
 
-    public void printHelp() throws InterruptedException {
+    public static void printHelp() throws InterruptedException {
         System.out.println("# Welcome to Prompt Dungeon...");
-        TimeUnit.SECONDS.sleep(3);
         System.out.println("# You will control a hero who woke up in a dungeon...");
-        TimeUnit.SECONDS.sleep(3);
-        System.out.println("# There will be 10 floors with 15 rooms on each floor...");
-        TimeUnit.SECONDS.sleep(3);
+        System.out.println("# There will be 10 floors with 10 rooms on each floor...");
         System.out.println(
-                "# You will collect potions, armors and swords from\n" + " defeated enemies or from chests found in the dungeon...");
-        TimeUnit.SECONDS.sleep(3);
+                "# Have two ways to increasy your stats:\n" 
+                + " Colect strength and defence potions to increasy your stats permanently\n"
+                + " or when you level up, completing your experience attribute ");
         System.out.println("# To interact with the menus, press the letter\n" + "or number that will appear between '[]'...");
-        TimeUnit.SECONDS.sleep(3);
+        System.out.println("abbreviations:");
+        System.out.println("DM: Damage Multiplier");
+        System.out.println("MC: Mana Cost");
+        System.out.println("RV: Recovery or Add Value");
+        System.out.println("QT: Quantity");
+        System.out.println();
+        System.out.println("# Tip: Remember to recovery all you stats and use all str and def potions before enter in combat");
+        System.out.println();
+        System.out.println("Have a nice game ;)");
     }
 
-    public void waitKey(Scanner scan) {
+    public static void waitKey(Scanner scan) {
         System.out.print("Press ENTER to continue...");
         scan.nextLine();
     }
 
-    public void progressBar() throws InterruptedException {
+    public static void progressBar() throws InterruptedException {
         int i = 0;
         while (i < 21) {
             System.out.print("[");
@@ -187,7 +192,7 @@ public class Screen {
     }
 
     // Cleans console
-    public void clearConsole() throws InterruptedException, IOException {
+    public static void clearConsole() throws InterruptedException, IOException {
 
         if (System.getProperty("os.name").contains("Windows")) {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();

@@ -7,7 +7,10 @@ public enum Dice {
     D3(3),
     D4(4),
     D5(5),
-    D6(6);
+    D6(6),
+    D7(7),
+    D8(8);
+    
 
     private final int value;
 

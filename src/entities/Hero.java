@@ -3,6 +3,8 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import enums.Color;
+
 public class Hero {
 
     private String name;
@@ -126,13 +128,123 @@ public class Hero {
     }
 
     public void LevelUp(){
-        if(getExperience() >= maxExperience){
-            setMaxLife(getMaxLife() + 50.0);
-            setMaxMana(getMaxMana() + 10.0);
-            setMaxExperience(getMaxExperience() + 25);
-            setAttack(getAttack() + 10.0);
-            setDefence(getDefence() + 5.0);
+        setLevel(getLevel() + 1);
+        setMaxLife(getMaxLife() + 80.0);
+        setLife(getMaxLife());
+        setMaxMana(getMaxMana() + 10.0);
+        setMana(getMaxMana());
+        setMaxExperience((getMaxExperience() + 200));
+        setAttack(getAttack() + 15.0);
+        setDefence(getDefence() + 5.0);
+        setExperience(0);
+      
+    }
+
+    public void usePotion(Integer index){
+        try {
+            if(getBackpack().getPotions().get(index).getName().contains("Life")){
+                getBackpack().getPotions().get(index).setQuantity(getBackpack().getPotions().get(index).getQuantity() - 1);
+                if(getLife() + getBackpack().getPotions().get(index).getRecoveryValue() >= getMaxLife() ){
+                    setLife(getMaxLife());
+                }
+                else{
+                    setLife(getLife() + getBackpack().getPotions().get(index).getRecoveryValue());
+                }
+            }
+            else if(getBackpack().getPotions().get(index).getName().contains("Mana")){
+                getBackpack().getPotions().get(index).setQuantity(getBackpack().getPotions().get(index).getQuantity() - 1);
+                if(getMana() + getBackpack().getPotions().get(index).getRecoveryValue() >= getMaxMana() ){
+                    setMana(getMaxMana());
+                }
+                else{
+                    setMana(getMana() + getBackpack().getPotions().get(index).getRecoveryValue());
+                }
+            }
+            else if(getBackpack().getPotions().get(index).getName().contains("Strength")){
+                getBackpack().getPotions().get(index).setQuantity(getBackpack().getPotions().get(index).getQuantity() - 1);
+                setAttack(getAttack() + getBackpack().getPotions().get(index).getRecoveryValue());
+            }
+            else{
+                getBackpack().getPotions().get(index).setQuantity(getBackpack().getPotions().get(index).getQuantity() - 1);
+                setDefence(getDefence() + getBackpack().getPotions().get(index).getRecoveryValue());
+            }
+            getBackpack().setWeight(getBackpack().getWeight() - getBackpack().getPotions().get(index).getItemWeight());
+            System.out.printf("You used %s\n", getBackpack().getPotions().get(index).getName());
+            removePotion(index);
+        } catch (Exception e) {
+            System.out.println("Error: Out of index range");
         }
+        
+    }
+
+    public void removePotion(int index){
+        try {
+            if(getBackpack().getPotions().get(index).getQuantity() <= 0){
+                getBackpack().getPotions().remove(index);
+            }
+        } catch (Exception e) {
+            System.out.println("Error: out of index range");
+        }
+        
+    }
+
+    public void deletePotion(int index){
+        
+        getBackpack().setWeight(getBackpack().getWeight() - (getBackpack().getPotions().get(index).getQuantity() * getBackpack().getPotions().get(index).getItemWeight()));
+        getBackpack().getPotions().remove(index);
+    }
+
+    public void printSkill(){
+        if(skills.size() >= 1){
+            for(Skill skill : skills){
+                System.out.println("[" + getSkills().indexOf(skill) + "] " + skill);
+            }
+        }
+        else{
+            System.out.println("You dont have Skills");
+        }
+        
+    }
+
+    public void newSkill(){
+        if(getExperience() == 0){
+            switch(getLevel()){
+                case 2 -> {getSkills().add(new Skill("Power Stab", 1.38, 15.0));
+                System.out.println("You acquired a new skill!");}
+                case 4 -> {getSkills().add(new Skill("Whirlwind", 1.65, 20.0));
+                System.out.println("You acquired a new skill!");}
+                case 6 -> {getSkills().add(new Skill("Divine Strike", 2.0, 30.0));
+                System.out.println("You acquired a new skill!");}
+            }
+        }
+    }
+
+    public String printHeroStatus(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(getName() + "\n");
+        sb.append(String.format("Life: " + Color.RED + "%.0f" + Color.RESET + "/" + Color.RED + "%.0f\n" + Color.RESET, getLife(), getMaxLife()));
+        sb.append(String.format("Mana: " + Color.BLUE + "%.0f" + Color.RESET + "/" + Color.BLUE + "%.0f\n" + Color.RESET, getMana(), getMaxMana()));
+        return sb.toString();
+    }
+
+    public String printHeroBackpackStatus(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(getName() + "\n");
+        sb.append(String.format("Life: " + Color.RED + "%.0f" + Color.RESET + "/" + Color.RED + "%.0f\n" + Color.RESET, getLife(), getMaxLife()));
+        sb.append(String.format("Mana: " + Color.BLUE + "%.0f" + Color.RESET + "/" + Color.BLUE + "%.0f\n" + Color.RESET, getMana(), getMaxMana()));
+        sb.append(String.format("Atk: %.0f  /  Def: %.0f", getAttack(), getDefence()));
+        return sb.toString();
+    }
+
+    public String printHeroFullStatus(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(getName() + "\n");
+        sb.append(String.format("Level: %d\n", getLevel()));
+        sb.append(String.format("Life: " + Color.RED + "%.0f" + Color.RESET + "/" + Color.RED + "%.0f\n" + Color.RESET, getLife(), getMaxLife()));
+        sb.append(String.format("Mana: " + Color.BLUE + "%.0f" + Color.RESET + "/" + Color.BLUE + "%.0f\n" + Color.RESET, getMana(), getMaxMana()));
+        sb.append(String.format("EXP: %d/%d\n", getExperience(), getMaxExperience()));
+        sb.append(String.format("Atk: %.0f  /  Def: %.0f", getAttack(), getDefence()));
+        return sb.toString();
     }
 
 }
