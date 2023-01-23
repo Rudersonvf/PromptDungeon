@@ -3,7 +3,8 @@
 
 # Sobre o projeto
 
-Prompt Dungeon é um jogo de rpg inspirado em Dungeons & Dragons no qual é jogado apenas pelo prompt de comando, através de escolhas descritas previamente.
+Prompt Dungeon é um jogo de rpg inspirado em Dungeons & Dragons no qual é jogado apenas pelo prompt de comando, através de escolhas previamente descritas.
+Conta com um "sistema de dados" no qual gera um valor aleatório, e dependendo do valor, uma certa ação é tomada.
 
 O projeto surgiu como um projeto pessoal para fins de estudo a programação orientada a objetos(POO) e a linguagem Java.
 
